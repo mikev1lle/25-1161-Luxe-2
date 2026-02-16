@@ -51,11 +51,18 @@
             height: auto;
         }
 
-        /* Video styling */
-        video {
-            display: block;
-            margin: 20px auto;
-            border: 2px solid #FFD700;
+        /* Video (YouTube) styling */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 30px auto;
+            border: 3px solid #FFD700;
+            border-radius: 12px;
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 280px;
             border-radius: 10px;
         }
 
@@ -91,23 +98,6 @@
             padding: 10px;
             border: 1px solid #FFD700;
         }
-
-        /* New 5x5 table */
-        .grid-table th, .grid-table td {
-            border: 1px solid #FFD700;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .grid-table th {
-            background-color: #FFD700;
-            color: #000000;
-        }
-
-        .grid-table td {
-            background-color: #1a1a1a;
-        }
-
     </style>
 </head>
 <body>
@@ -127,7 +117,9 @@
 </p>
 
 <div style="text-align:center;">
-    <img src="file:///C:/Users/Admin/Documents/Luxe/Luxe/Images/Screenshot%20(12).png" alt="Luxury Evening Gown" width="200"> <img src="C:\Users\Admin\Documents\Luxe\Luxe\Images\mens bag.jpg" alt="mens bags" width="200"> <img src="C:\Users\Admin\Documents\Luxe\Luxe\Images\Womens handbag.avif" alt="Womens handbag" width="200">
+    <img src="https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1760379327/860845_AAF8L_2547_001_074_0044_Light.jpg" alt="Luxury Evening Gown" width="200"> 
+    <img src="https://images-cdn.ubuy.ke/634ea51db39e2277a1223fa2-balenciaga-shoes.jpg" alt="mens bags" width="200"> 
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLEEb48lf3h4vO5L78PGWofLKfUTfo9ygQFg&s" alt="Womens handbag" width="200">
 </div>
 
 <p>Explore our boutique categories and inventory details below.</p>
@@ -152,9 +144,16 @@
     <li>Limited Editions</li>
 </ol>
 
-<video autoplay muted loop playsinline preload="auto" width="400">
-    <source src="C:\Users\Admin\Documents\Luxe\Luxe\Videos\0123.mp4" type="video/mp4">
-</video>
+<!-- Updated YouTube Runway Video Embed -->
+<div class="video-container">
+    <iframe 
+        src="https://www.youtube.com/embed/61eDcIl_RHw?rel=0&modestbranding=1" 
+        title="Runway Video"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+</div>
 
 <h2>Official Price List & Inventory</h2>
 
@@ -202,8 +201,6 @@
         <td>In Stock</td>
     </tr>
 </table>
-
-
 
 </body>
 </html>
