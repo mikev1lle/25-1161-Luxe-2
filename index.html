@@ -1,14 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luxe Designer Apparel</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+
     <style>
-        /* General body styling */
+        /* ============================= */
+        /* INTERNAL CSS                  */
+        /* ============================= */
+
         body {
             font-family: 'Georgia', serif;
-            background-color: #000000; /* Black background for luxury feel */
-            color: #ffffff; /* Default text color */
+            background-color: #000000;
+            color: #ffffff;
             margin: 20px;
             line-height: 1.6;
         }
@@ -18,187 +26,150 @@
         }
 
         h1 em {
-            color: #FFD700; /* Gold accent for main title */
+            color: #FFD700;
             font-size: 48px;
         }
 
         h2 {
             color: #ffffff;
-            font-size: 24px;
             margin-bottom: 20px;
         }
 
-        /* Paragraphs */
-        p {
-            text-align: center;
-            color: #FFD700; /* Gold color for highlighted paragraphs */
-            font-size: 18px;
+        /* Paragraph 2 - Orange & Bold */
+        .internal-paragraph {
+            color: orange;
+            font-weight: bold;
         }
 
-        p.quote {
+        /* Highlight 2 - Internal */
+        .highlight2 {
+            color: brown;
+        }
+
+        /* Building 2 - Internal */
+        .building2 {
+            color: darkcyan;
+        }
+
+        /* Quote */
+        .quote {
             font-style: italic;
             font-size: 20px;
             margin: 30px 0;
-            color: #ffffff;
-        }
-
-        /* Images */
-        img {
-            margin: 10px;
-            border: 2px solid #FFD700;
-            border-radius: 10px;
-            width: 200px;
-            height: auto;
-        }
-
-        /* Video (YouTube) styling */
-        .video-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin: 30px auto;
-            border: 3px solid #FFD700;
-            border-radius: 12px;
-        }
-        .video-container iframe {
-            width: 100%;
-            height: 280px;
-            border-radius: 10px;
-        }
-
-        /* Ordered list */
-        ol {
-            margin: 20px auto;
-            max-width: 600px;
-            color: #ffffff;
-        }
-
-        ol li ul {
             color: #FFD700;
+            text-align: center;
         }
 
-        /* Table styling */
+        /* Table Styling */
         table {
             width: 90%;
             margin: 20px auto;
             border-collapse: collapse;
             text-align: center;
-            font-size: 16px;
         }
 
         table th {
-            background-color: #FFD700; /* Gold headers */
-            color: #000000;
+            background-color: #FFD700;
+            color: black;
             padding: 10px;
         }
 
         table td {
-            background-color: #1a1a1a; /* Dark gray/black rows */
-            color: #ffffff;
+            background-color: #1a1a1a;
+            color: white;
             padding: 10px;
             border: 1px solid #FFD700;
         }
     </style>
 </head>
+
 <body>
 
 <h1><em>Luxe</em></h1>
 
-<h2>Discover our exclusive collection of high-end fashion. Elegant, bold, and sophisticated.</h2>
+<p style="color: #FFD700;">Presented by: Andrew Okech</p>
 
-<p>
-    View our latest arrivals and elevate your wardrobe with the finest in luxury fashion.  
-    From stunning gowns to exquisite handbags and statement accessories, our collection embodies sophistication.  
-    Experience exclusive designs, unparalleled craftsmanship, and timeless style.
+<h2>Discover our exclusive collection of high-end fashion.</h2>
+
+<!-- ================= PARAGRAPH STYLING DEMO ================= -->
+
+<!-- Inline CSS (Blue + Italic) -->
+<p style="color: blue; font-style: italic;">Paragraph 1: Luxury clothing defines confidence, elegance, and timeless sophistication.</p>
+
+<!-- Internal CSS (Orange + Bold) -->
+<p class="internal-paragraph">
+    Paragraph 2: Our premium fabrics and handcrafted designs represent true fashion excellence.
 </p>
+
+<!-- External CSS (Purple + Underline) -->
+<p class="external-paragraph">
+    Paragraph 3: Seasonal couture collections reflect global runway influence and modern luxury trends.
+</p>
+
+<hr>
+
+<!-- ================= H1 STYLING DEMO ================= -->
+
+<!-- Inline -->
+<h1 style="color: red;">Highlight 1: Signature Gold Collection</h1>
+
+<!-- Internal -->
+<h1 class="highlight2">
+    Highlight 2: Exclusive Designer Pieces
+</h1>
+
+<!-- External -->
+<h1 class="highlight3">
+    Highlight 3: Limited Edition Couture
+</h1>
+
+<hr>
+
+<!-- ================= H3 STYLING DEMO ================= -->
+
+<!-- Inline -->
+<h3 style="color: green;">
+    Building 1: Formal Luxury Wear
+</h3>
+
+<!-- Internal -->
+<h3 class="building2">
+    Building 2: Premium Casual Collection
+</h3>
+
+<!-- External -->
+<h3 class="building3">
+    Building 3: Elite Sportswear Line
+</h3>
+
+<hr>
 
 <p class="quote">
-    "Fashion is the armor to survive the reality of everyday life." – Bill Cunningham
+    "Fashion is the armor to survive the reality of everyday life."
 </p>
-
-<div style="text-align:center;">
-    <img src="https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1760379327/860845_AAF8L_2547_001_074_0044_Light.jpg"> 
-    <img src="https://images-cdn.ubuy.ke/634ea51db39e2277a1223fa2-balenciaga-shoes.jpg" width="200"> 
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLEEb48lf3h4vO5L78PGWofLKfUTfo9ygQFg&s" width="200">
-</div>
-
-<p>Explore our boutique categories and inventory details below.</p>
-
-<ol>
-    <li><strong>High-End Apparel</strong>
-        <ul>
-            <li>Evening Gowns</li>
-            <li>Tailored Suits</li>
-        </ul>
-    </li>
-    <li>Footwear</li>
-    <li>Leather Goods</li>
-    <li>Accessories</li>
-    <li><strong>Beauty & Fragrance</strong>
-        <ul>
-            <li>Eau de Parfum</li>
-            <li>Skincare Essentials</li>
-        </ul>
-    </li>
-    <li>Seasonal Collections</li>
-    <li>Limited Editions</li>
-</ol>
-
-<!-- Updated YouTube Runway Video Embed -->
-<div class="video-container">
-    <iframe 
-        src="https://www.youtube.com/embed/61eDcIl_RHw?rel=0&modestbranding=1" 
-        title="Runway Video"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-    </iframe>
-</div>
 
 <h2>Official Price List & Inventory</h2>
 
 <table>
     <tr>
-        <th>Item Name</th>
+        <th>Item</th>
         <th>Brand</th>
-        <th>Category</th>
-        <th>Price (USD)</th>
-        <th>Availability</th>
+        <th>Price</th>
     </tr>
     <tr>
         <td>Luxury Evening Gown</td>
         <td>Chanel</td>
-        <td>Apparel</td>
         <td>$2,500</td>
-        <td>In Stock</td>
     </tr>
     <tr>
         <td>Men's Leather Bag</td>
         <td>Gucci</td>
-        <td>Accessories</td>
         <td>$1,200</td>
-        <td>Pre-order</td>
-    </tr>
-    <tr>
-        <td>Women's Handbag</td>
-        <td>Prada</td>
-        <td>Accessories</td>
-        <td>$1,800</td>
-        <td>In Stock</td>
     </tr>
     <tr>
         <td>Designer Sneakers</td>
         <td>Balenciaga</td>
-        <td>Footwear</td>
         <td>$950</td>
-        <td>Limited</td>
-    </tr>
-    <tr>
-        <td>Silk Scarf</td>
-        <td>Hermès</td>
-        <td>Accessories</td>
-        <td>$450</td>
-        <td>In Stock</td>
     </tr>
 </table>
 
