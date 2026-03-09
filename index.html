@@ -1,225 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Luxe Designer Apparel</title>
-    <style>
-        /* ============================= */
-        /* General Body Styling          */
-        /* ============================= */
-        body {
-            font-family: 'Georgia', serif;
-            background-color: #000000; /* Black background for luxury feel */
-            color: #ffffff; /* Default text color */
-            margin: 20px;
-            line-height: 1.6;
-        }
+  <meta charset="UTF-8" />
+  <title>LUXE — Official Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-        h1, h2 {
-            text-align: center;
-        }
+  <style>
+    :root {
+      --black: #111111;
+      --white: #ffffff;
+      --gold: #b5a264;
+      --cream: #f9f8f3;
+      --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-        h1 em {
-            color: #FFD700; /* Gold accent for main title */
-            font-size: 48px;
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        h2 {
-            color: #ffffff;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
 
-        /* ============================= */
-        /* Paragraphs                     */
-        /* ============================= */
-        p {
-            text-align: center;
-            color: #FFD700; /* Gold color for highlighted paragraphs */
-            font-size: 18px;
-        }
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      border-bottom: 1px solid #e0e0e0;
+    }
 
-        p.quote {
-            font-style: italic;
-            font-size: 20px;
-            margin: 30px 0;
-            color: #ffffff;
-        }
+    .nav {
+      max-width: 1600px;
+      margin: auto;
+      padding: 25px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        /* ============================= */
-        /* Images                         */
-        /* ============================= */
-        img {
-            margin: 10px;
-            border: 2px solid #FFD700;
-            border-radius: 10px;
-            width: 200px;
-            height: auto;
-        }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+    }
 
-        /* ============================= */
-        /* Video (YouTube) Styling        */
-        /* ============================= */
-        .video-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin: 30px auto;
-            border: 3px solid #FFD700;
-            border-radius: 12px;
-        }
+    .logo a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-        .video-container iframe {
-            width: 100%;
-            height: 280px;
-            border-radius: 10px;
-        }
+    .nav-links {
+      display: flex;
+      gap: 35px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
 
-        /* ============================= */
-        /* Ordered List Styling           */
-        /* ============================= */
-        ol {
-            margin: 20px auto;
-            max-width: 600px;
-            color: #ffffff;
-        }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--black);
+      position: relative;
+    }
 
-        ol li ul {
-            color: #FFD700;
-        }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0; height: 1px;
+      bottom: -5px; left: 0;
+      background: var(--black);
+      transition: var(--transition);
+    }
 
-        /* ============================= */
-        /* Table Styling                  */
-        /* ============================= */
-        table {
-            width: 90%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            text-align: center;
-            font-size: 16px;
-        }
+    .nav-links a:hover::after { width: 100%; }
 
-        table th {
-            background-color: #FFD700; /* Gold headers */
-            color: #000000;
-            padding: 10px;
-        }
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+                  url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=2000") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
 
-        table td {
-            background-color: #1a1a1a; /* Dark gray/black rows */
-            color: #ffffff;
-            padding: 10px;
-            border: 1px solid #FFD700;
-        }
-    </style>
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(50px, 8vw, 110px);
+      font-style: italic;
+      font-weight: 400;
+      margin-bottom: 20px;
+      letter-spacing: -2px;
+    }
+
+    .btn {
+      padding: 16px 45px;
+      background: var(--white);
+      color: var(--black);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      transition: var(--transition);
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: var(--black);
+      color: var(--white);
+      transform: translateY(-5px);
+    }
+
+    .house-curation {
+      padding: 100px 2%;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 60px;
+      font-weight: 400;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .category-card {
+      text-align: center;
+      text-decoration: none;
+      color: var(--black);
+    }
+
+    .img-container {
+      overflow: hidden;
+      background: #f4f4f4;
+      margin-bottom: 15px;
+      aspect-ratio: 4 / 5;
+    }
+
+    .category-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+      display: block;
+    }
+
+    .category-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .category-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      padding-top: 10px;
+    }
+
+    .editorial-spread {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      background: var(--cream);
+      padding: 0;
+      align-items: center;
+    }
+
+    .editorial-content {
+      padding: 10%;
+    }
+
+    .editorial-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 60px;
+      line-height: 1;
+      margin-bottom: 30px;
+    }
+
+    .editorial-spread img {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+    }
+
+    footer {
+      background: var(--black);
+      color: white;
+      padding: 100px 5%;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 50px;
+    }
+
+    footer h4 {
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-bottom: 25px;
+      color: var(--gold);
+    }
+
+    footer a {
+      display: block;
+      color: #999;
+      text-decoration: none;
+      font-size: 13px;
+      margin-bottom: 12px;
+      transition: 0.3s;
+    }
+
+    footer a:hover { color: white; }
+
+    @media (max-width: 1024px) {
+      .category-grid { grid-template-columns: repeat(2, 1fr); }
+      .editorial-spread { grid-template-columns: 1fr; }
+      footer { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
-
 <body>
 
-    <h1><em>Luxe</em></h1>
-
-    <!-- Inline CSS -->
-    <p style="color: blue;">Presented by: Andrew Okech</p>
-
-    <h2>Discover our exclusive collection of high-end fashion. Elegant, bold, and sophisticated.</h2>
-
-    <p>
-        View our latest arrivals and elevate your wardrobe with the finest in luxury fashion.
-        From stunning gowns to exquisite handbags and statement accessories, our collection embodies sophistication.
-        Experience exclusive designs, unparalleled craftsmanship, and timeless style.
-    </p>
-
-    <p class="quote">
-        "Fashion is the armor to survive the reality of everyday life." – Bill Cunningham
-    </p>
-
-    <!-- Image Gallery -->
-    <div style="text-align:center;">
-        <img src="https://media.gucci.com/style/HEXFBFBFB_South_0_160_640x640/1760379327/860845_AAF8L_2547_001_074_0044_Light.jpg" alt="Luxury Gucci Dress">
-        <img src="https://images-cdn.ubuy.ke/634ea51db39e2277a1223fa2-balenciaga-shoes.jpg" width="200" alt="Balenciaga Shoes">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLEEb48lf3h4vO5L78PGWofLKfUTfo9ygQFg&s" width="200" alt="Designer Handbag">
+  <header>
+    <div class="nav">
+      <div class="logo"><a href="Index.html">LUXE</a></div>
+      <nav class="nav-links">
+        <a href="New in.html">New In</a>
+        <a href="handbags.html">Handbags</a>
+        <a href="ready-to-wear.html">Ready to Wear</a>
+        <a href="#">Jewelry</a>
+      </nav>
+      <div class="nav-links">
+        <a href="#">Search</a>
+        <a href="#">Cart (0)</a>
+      </div>
     </div>
+  </header>
 
-    <p>Explore our boutique categories and inventory details below.</p>
-
-    <!-- Product Categories -->
-    <ol>
-        <li><strong>High-End Apparel</strong>
-            <ul>
-                <li>Evening Gowns</li>
-                <li>Tailored Suits</li>
-            </ul>
-        </li>
-        <li>Footwear</li>
-        <li>Leather Goods</li>
-        <li>Accessories</li>
-        <li><strong>Beauty & Fragrance</strong>
-            <ul>
-                <li>Eau de Parfum</li>
-                <li>Skincare Essentials</li>
-            </ul>
-        </li>
-        <li>Seasonal Collections</li>
-        <li>Limited Editions</li>
-    </ol>
-
-    <!-- YouTube Video -->
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/61eDcIl_RHw?rel=0&modestbranding=1"
-                title="Runway Video"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-        </iframe>
+  <section class="hero">
+    <div class="hero-text">
+      <h1>The Ephemeral Collection</h1>
+      <a class="btn" href="New in.html">Shop the Runway</a>
     </div>
+  </section>
 
-    <!-- Price List Table -->
-    <h2>Official Price List & Inventory</h2>
+  <section class="house-curation">
+    <h2 class="section-title">Curated by the House</h2>
+    <div class="category-grid">
+      
+      <a href="handbags.html" class="category-card">
+        <div class="img-container">
+          <img src="Images/Womens handbag.avif" alt="Women's Handbags">
+        </div>
+        <div class="category-label">Women's Handbags</div>
+      </a>
 
-    <table>
-        <tr>
-            <th>Item Name</th>
-            <th>Brand</th>
-            <th>Category</th>
-            <th>Price (USD)</th>
-            <th>Availability</th>
-        </tr>
-        <tr>
-            <td>Luxury Evening Gown</td>
-            <td>Chanel</td>
-            <td>Apparel</td>
-            <td>$2,500</td>
-            <td>In Stock</td>
-        </tr>
-        <tr>
-            <td>Men's Leather Bag</td>
-            <td>Gucci</td>
-            <td>Accessories</td>
-            <td>$1,200</td>
-            <td>Pre-order</td>
-        </tr>
-        <tr>
-            <td>Women's Handbag</td>
-            <td>Prada</td>
-            <td>Accessories</td>
-            <td>$1,800</td>
-            <td>In Stock</td>
-        </tr>
-        <tr>
-            <td>Designer Sneakers</td>
-            <td>Balenciaga</td>
-            <td>Footwear</td>
-            <td>$950</td>
-            <td>Limited</td>
-        </tr>
-        <tr>
-            <td>Silk Scarf</td>
-            <td>Hermès</td>
-            <td>Accessories</td>
-            <td>$450</td>
-            <td>In Stock</td>
-        </tr>
-    </table>
+      <a href="#" class="category-card">
+        <div class="img-container">
+          <img src="Images/Womens shoe.avif" alt="Women's Shoes">
+        </div>
+        <div class="category-label">Women's Shoes</div>
+      </a>
+
+      <a href="#" class="category-card">
+        <div class="img-container">
+          <img src="Images/Screenshot (12).png" alt="Men's Shoes">
+        </div>
+        <div class="category-label">Men's Shoes</div>
+      </a>
+
+      <a href="#" class="category-card">
+        <div class="img-container">
+          <img src="Images/mens bag.jpg" alt="Men's Bags">
+        </div>
+        <div class="category-label">Men's Bags</div>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="editorial-spread">
+    <div class="editorial-content">
+      <h2>Artistry In <br><em>Motion</em></h2>
+      <p style="margin-bottom: 40px; color: #555;">Discover a world where classic Italian craftsmanship meets the avant-garde spirit of the modern era.</p>
+      <a class="btn" href="#" style="border: 1px solid black;">Read the Story</a>
+    </div>
+    <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1000">
+  </section>
+
+  <footer>
+    <div>
+      <div class="logo" style="color: white; font-size: 24px; margin-bottom: 20px;"><a href="Index.html" style="color:white;">LUXE</a></div>
+      <p style="color: #666; font-size: 12px; max-width: 300px;">Experience the pinnacle of luxury. Join our world for exclusive previews and runway access.</p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <a href="#">Book an Appointment</a>
+      <a href="#">Collect in Store</a>
+      <a href="#">Gifting</a>
+    </div>
+    <div>
+      <h4>The House</h4>
+      <a href="#">Our Story</a>
+      <a href="#">Sustainability</a>
+      <a href="#">Code of Ethics</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="#">Client Advisors</a>
+      <a href="#">WhatsApp</a>
+      <a href="#">Instagram</a>
+    </div>
+  </footer>
 
 </body>
 </html>
