@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>New In — LUXE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #111111;
+      --white: #ffffff;
+      --gold: #b5a264; 
+      --cream: #f9f8f3;
+      --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .nav {
+      max-width: 1600px;
+      margin: auto;
+      padding: 25px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+    }
+
+    .logo a { text-decoration: none; color: inherit; }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--black);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0; height: 1px;
+      bottom: -5px; left: 0;
+      background: var(--black);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after { width: 100%; }
+
+    /* --- VIDEO HEADER SECTION --- */
+    .collection-header {
+      position: relative;
+      height: 75vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: var(--white);
+      text-align: center;
+    }
+
+    .video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* Dark overlay to make the text pop */
+    .video-background::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3); 
+    }
+
+    .video-background video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensures video fills the area without stretching */
+    }
+
+    .collection-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 8vw, 80px);
+      font-style: italic;
+      font-weight: 400;
+      text-shadow: 2px 2px 15px rgba(0,0,0,0.4);
+    }
+
+    /* --- PRODUCT GRID --- */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      padding: 80px 5%;
+    }
+
+    .product {
+      text-align: center;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .img-container {
+      overflow: hidden;
+      background: #f4f4f4;
+      margin-bottom: 20px;
+    }
+
+    .product img {
+      width: 100%;
+      height: 800px;
+      object-fit: cover;
+      transition: var(--transition);
+      display: block;
+    }
+
+    .product:hover img { transform: scale(1.05); }
+
+    .product-info h3 {
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .product-info span {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    footer {
+      background: var(--black);
+      color: white;
+      padding: 100px 50px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .footer-brand .logo {
+      color: white;
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    footer h4 {
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 3px;
+      margin-bottom: 30px;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    footer a {
+      display: block;
+      color: #aaa;
+      text-decoration: none;
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+
+    footer a:hover { color: white; }
+
+    @media (max-width: 1024px) {
+      .products { grid-template-columns: 1fr; }
+      footer { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav">
+      <div class="logo"><a href="Index.html">LUXE</a></div>
+      <nav class="nav-links">
+        <a href="New in.html">New In</a>
+        <a href="handbags.html">Handbags</a>
+        <a href="ready-to-wear.html">Ready to Wear</a>
+        <a href="jewelry.html">Jewelry</a>
+      </nav>
+      <div class="nav-links">
+        <a href="#">Search</a>
+        <a href="#">Cart (0)</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="collection-header">
+    <div class="video-background">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="Videos/0123.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <h4 style="letter-spacing: 4px; font-size: 12px; margin-bottom: 10px; color: var(--gold);">SPRING / SUMMER 2026</h4>
+    <h1>The New Arrivals</h1>
+  </section>
+
+  <section class="products">
+    <div class="product">
+      <div class="img-container"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1200" alt="Velvet Runway Look"></div>
+      <div class="product-info"><h3>Velvet Evening Blazer</h3><span>$3,200</span></div>
+    </div>
+
+    <div class="product">
+      <div class="img-container"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200" alt="Tulle Details"></div>
+      <div class="product-info"><h3>Embroidered Tulle Gown</h3><span>$5,800</span></div>
+    </div>
+
+    <div class="product">
+      <div class="img-container"><img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?auto=format&fit=crop&w=1200" alt="Heritage Bag"></div>
+      <div class="product-info"><h3>Heritage Monogram Bucket Bag</h3><span>$2,150</span></div>
+    </div>
+
+    <div class="product">
+      <div class="img-container"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200" alt="Silk Set"></div>
+      <div class="product-info"><h3>Chartreuse Silk Two-Piece</h3><span>$2,400</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-brand">
+      <div class="logo"><a href="Index.html" style="color:white; text-decoration:none;">LUXE</a></div>
+      <p style="color: #777; font-size: 13px; max-width: 280px;">Experience the pinnacle of luxury.</p>
+    </div>
+    <div>
+      <h4>The House</h4>
+      <a href="#">Our Story</a>
+      <a href="#">Sustainability</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="#">Client Advisors</a>
+      <a href="#">Instagram</a>
+    </div>
+  </footer>
+
+</body>
+</html>
