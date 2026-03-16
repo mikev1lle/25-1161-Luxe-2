@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>LUXE — Official Store</title>
+  <title>LUXE — Luxury Fashion</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
   <style>
     :root {
       --black: #111111;
@@ -14,222 +13,96 @@
       --cream: #f9f8f3;
       --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--black); line-height: 1.6; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--white);
-      color: var(--black);
-      line-height: 1.6;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(255,255,255,0.95);
-      border-bottom: 1px solid #e0e0e0;
-    }
-
-    .nav {
-      max-width: 1600px;
-      margin: auto;
-      padding: 25px 50px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 32px;
-      font-weight: 700;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-    }
-
-    .logo a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 35px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--black);
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      width: 0; height: 1px;
-      bottom: -5px; left: 0;
-      background: var(--black);
-      transition: var(--transition);
-    }
-
+    /* NAV */
+    header { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(255,255,255,0.95); border-bottom: 1px solid #e0e0e0; }
+    .nav { max-width: 1600px; margin: auto; padding: 25px 50px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; letter-spacing: 6px; text-transform: uppercase; }
+    .logo a { text-decoration: none; color: inherit; }
+    .nav-links { display: flex; gap: 35px; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+    .nav-links a { text-decoration: none; color: var(--black); position: relative; }
+    .nav-links a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -5px; left: 0; background: var(--black); transition: var(--transition); }
     .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--gold); }
 
+    /* HERO VIDEO */
     .hero {
+      position: relative;
       height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
-                  url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=2000") center/cover no-repeat;
+      width: 100%;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      text-align: center;
-      color: white;
-    }
-
-    .hero-text h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(50px, 8vw, 110px);
-      font-style: italic;
-      font-weight: 400;
-      margin-bottom: 20px;
-      letter-spacing: -2px;
-    }
-
-    .btn {
-      padding: 16px 45px;
-      background: var(--white);
-      color: var(--black);
-      text-decoration: none;
-      text-transform: uppercase;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      transition: var(--transition);
-      display: inline-block;
-    }
-
-    .btn:hover {
-      background: var(--black);
-      color: var(--white);
-      transform: translateY(-5px);
-    }
-
-    .house-curation {
-      padding: 100px 2%;
-      text-align: center;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      margin-bottom: 60px;
-      font-weight: 400;
-    }
-
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-    }
-
-    .category-card {
-      text-align: center;
-      text-decoration: none;
-      color: var(--black);
-    }
-
-    .img-container {
-      overflow: hidden;
-      background: #f4f4f4;
-      margin-bottom: 15px;
-      aspect-ratio: 4 / 5;
-    }
-
-    .category-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: var(--transition);
-      display: block;
-    }
-
-    .category-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .category-label {
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 1px;
-      padding-top: 10px;
-    }
-
-    .editorial-spread {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      background: var(--cream);
-      padding: 0;
       align-items: center;
+      overflow: hidden;
+      color: var(--white);
+      text-align: center;
     }
+    .video-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+    .video-bg::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.42); }
+    .video-bg video { width: 100%; height: 100%; object-fit: cover; }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-content h4 { letter-spacing: 6px; font-size: 12px; margin-bottom: 14px; color: var(--gold); text-transform: uppercase; }
+    .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(56px, 10vw, 110px); font-style: italic; font-weight: 400; text-shadow: 2px 4px 20px rgba(0,0,0,0.3); line-height: 1.1; margin-bottom: 30px; }
+    .hero-content p { font-size: 13px; letter-spacing: 2px; color: rgba(255,255,255,0.8); margin-bottom: 40px; }
+    .hero-cta { display: inline-block; padding: 16px 48px; border: 1px solid rgba(255,255,255,0.8); color: white; text-decoration: none; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; transition: var(--transition); }
+    .hero-cta:hover { background: white; color: var(--black); }
+    .scroll-hint { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(255,255,255,0.5); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; }
+    .scroll-line { width: 1px; height: 50px; background: rgba(255,255,255,0.3); animation: scrollPulse 2s ease-in-out infinite; }
+    @keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
 
-    .editorial-content {
-      padding: 10%;
-    }
+    /* INTRO STRIP */
+    .intro-strip { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
+    .intro-item { padding: 40px; text-align: center; border-right: 1px solid #eee; }
+    .intro-item:last-child { border-right: none; }
+    .intro-item h4 { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .intro-item p { font-size: 13px; color: #777; }
 
-    .editorial-content h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 60px;
-      line-height: 1;
-      margin-bottom: 30px;
-    }
+    /* FEATURED CATEGORIES */
+    .section-header { text-align: center; padding: 80px 5% 50px; }
+    .section-header h4 { font-size: 11px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+    .section-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(32px,5vw,52px); font-style: italic; font-weight: 400; }
 
-    .editorial-spread img {
-      width: 100%;
-      height: 100vh;
-      object-fit: cover;
-    }
+    .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 0 5% 80px; }
+    .category-card { text-decoration: none; color: var(--black); display: block; }
+    .category-card .img-wrap { overflow: hidden; aspect-ratio: 3/4; margin-bottom: 16px; background: #f4f4f4; }
+    .category-card img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); display: block; }
+    .category-card:hover img { transform: scale(1.05); }
+    .category-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 4px; }
+    .category-sub { font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold); font-size: 14px; }
 
-    footer {
-      background: var(--black);
-      color: white;
-      padding: 100px 5%;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 50px;
-    }
+    /* EDITORIAL FULL BLEED */
+    .editorial { position: relative; height: 70vh; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
+    .editorial-video-bg { position: absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
+    .editorial-video-bg::after { content:''; position:absolute; top:0;left:0;width:100%;height:100%; background:rgba(0,0,0,0.4); }
+    .editorial-video-bg video { width:100%; height:100%; object-fit:cover; }
+    .editorial-text-inner { position: relative; z-index: 1; }
+    .editorial-text-inner h4 { font-size:11px; letter-spacing:4px; color:var(--gold); text-transform:uppercase; margin-bottom:12px; }
+    .editorial-text-inner h2 { font-family:'Playfair Display',serif; font-size:clamp(36px,6vw,72px); font-style:italic; font-weight:400; margin-bottom:24px; text-shadow:2px 4px 20px rgba(0,0,0,0.3); }
+    .editorial-text-inner a { display:inline-block; padding:14px 40px; border:1px solid rgba(255,255,255,0.7); color:white; text-decoration:none; font-size:11px; letter-spacing:3px; text-transform:uppercase; font-weight:600; transition:var(--transition); }
+    .editorial-text-inner a:hover { background:white; color:var(--black); }
 
-    footer h4 {
-      text-transform: uppercase;
-      font-size: 12px;
-      letter-spacing: 2px;
-      margin-bottom: 25px;
-      color: var(--gold);
-    }
+    /* FEATURED PRODUCTS */
+    .products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0 5% 80px; }
+    .product { text-align: center; }
+    .img-container { overflow: hidden; background: #f4f4f4; margin-bottom: 20px; }
+    .product img { width: 100%; height: 480px; object-fit: cover; transition: var(--transition); display: block; }
+    .product:hover img { transform: scale(1.05); }
+    .product-info h4 { font-size:10px; color:#999; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px; }
+    .product-info h3 { font-size:13px; letter-spacing:2px; text-transform:uppercase; margin-bottom:5px; }
+    .product-info span { font-family:'Playfair Display',serif; font-style:italic; color:var(--gold); }
 
-    footer a {
-      display: block;
-      color: #999;
-      text-decoration: none;
-      font-size: 13px;
-      margin-bottom: 12px;
-      transition: 0.3s;
-    }
+    /* FOOTER */
+    footer { background:var(--black); color:white; padding:100px 50px; display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; }
+    footer h4 { text-transform:uppercase; font-size:11px; letter-spacing:3px; margin-bottom:30px; color:var(--gold); font-weight:600; }
+    footer a { display:block; color:#aaa; text-decoration:none; font-size:13px; margin-bottom:15px; transition:0.3s; }
+    footer a:hover { color:white; }
+    .footer-brand p { color:#777; font-size:13px; max-width:280px; line-height:1.8; margin-top:16px; }
 
-    footer a:hover { color: white; }
-
-    @media (max-width: 1024px) {
-      .category-grid { grid-template-columns: repeat(2, 1fr); }
-      .editorial-spread { grid-template-columns: 1fr; }
-      footer { grid-template-columns: 1fr 1fr; }
-    }
+    @media(max-width:1024px) { .category-grid{grid-template-columns:repeat(2,1fr);} .products{grid-template-columns:1fr;} footer{grid-template-columns:1fr 1fr;} .intro-strip{grid-template-columns:1fr;} }
+    @media(max-width:600px) { .nav{padding:20px 20px;} footer{grid-template-columns:1fr; padding:60px 25px;} }
   </style>
 </head>
 <body>
@@ -241,70 +114,107 @@
         <a href="New in.html">New In</a>
         <a href="handbags.html">Handbags</a>
         <a href="ready-to-wear.html">Ready to Wear</a>
-        <a href="#">Jewelry</a>
+        <a href="jewelry.html">Jewelry</a>
       </nav>
       <div class="nav-links">
         <a href="#">Search</a>
-        <a href="#">Cart (0)</a>
+        <a href="cart.html" id="cart-nav-link">Cart (0)</a>
       </div>
     </div>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
-    <div class="hero-text">
-      <h1>The Ephemeral Collection</h1>
-      <a class="btn" href="New in.html">Shop the Runway</a>
+    <div class="video-bg">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_25fps.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-content">
+      <h4>Spring / Summer 2026</h4>
+      <h1>Wear the<br>Extraordinary</h1>
+      <p>The new collection has arrived</p>
+      <a href="New in.html" class="hero-cta">Discover Now</a>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
     </div>
   </section>
 
-  <section class="house-curation">
-    <h2 class="section-title">Curated by the House</h2>
-    <div class="category-grid">
-      
-      <a href="handbags.html" class="category-card">
-        <div class="img-container">
-          <img src="Images/Womens handbag.avif" alt="Women's Handbags">
-        </div>
-        <div class="category-label">Women's Handbags</div>
-      </a>
+  <!-- INTRO STRIP -->
+  <div class="intro-strip">
+    <div class="intro-item"><h4>Complimentary Shipping</h4><p>On all orders worldwide</p></div>
+    <div class="intro-item"><h4>Exclusive Access</h4><p>Members-only runway previews</p></div>
+    <div class="intro-item"><h4>Free Returns</h4><p>Within 30 days of purchase</p></div>
+  </div>
 
-      <a href="#" class="category-card">
-        <div class="img-container">
-          <img src="Images/Womens shoe.avif" alt="Women's Shoes">
-        </div>
-        <div class="category-label">Women's Shoes</div>
-      </a>
+  <!-- CATEGORIES -->
+  <div class="section-header">
+    <h4>The Collections</h4>
+    <h2>Shop by Category</h2>
+  </div>
+  <div class="category-grid">
+    <a href="New in.html" class="category-card">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800" alt="New In"></div>
+      <div class="category-label">New In</div>
+      <div class="category-sub">SS26 Arrivals</div>
+    </a>
+    <a href="handbags.html" class="category-card">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800" alt="Handbags"></div>
+      <div class="category-label">Handbags</div>
+      <div class="category-sub">Signature Collection</div>
+    </a>
+    <a href="ready-to-wear.html" class="category-card">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800" alt="Ready to Wear"></div>
+      <div class="category-label">Ready to Wear</div>
+      <div class="category-sub">AW26</div>
+    </a>
+    <a href="jewelry.html" class="category-card">
+      <div class="img-wrap"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800" alt="Jewelry"></div>
+      <div class="category-label">Jewelry</div>
+      <div class="category-sub">Fine & High Jewellery</div>
+    </a>
+  </div>
 
-      <a href="#" class="category-card">
-        <div class="img-container">
-          <img src="Images/Screenshot (12).png" alt="Men's Shoes">
-        </div>
-        <div class="category-label">Men's Shoes</div>
-      </a>
-
-      <a href="#" class="category-card">
-        <div class="img-container">
-          <img src="Images/mens bag.jpg" alt="Men's Bags">
-        </div>
-        <div class="category-label">Men's Bags</div>
-      </a>
-
+  <!-- EDITORIAL -->
+  <section class="editorial">
+    <div class="editorial-video-bg">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="https://videos.pexels.com/video-files/6896428/6896428-uhd_2560_1440_25fps.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="editorial-text-inner">
+      <h4>The Edit</h4>
+      <h2>Autumn / Winter 2026</h2>
+      <a href="ready-to-wear.html">Shop Ready to Wear</a>
     </div>
   </section>
 
-  <section class="editorial-spread">
-    <div class="editorial-content">
-      <h2>Artistry In <br><em>Motion</em></h2>
-      <p style="margin-bottom: 40px; color: #555;">Discover a world where classic Italian craftsmanship meets the avant-garde spirit of the modern era.</p>
-      <a class="btn" href="#" style="border: 1px solid black;">Read the Story</a>
+  <!-- FEATURED PRODUCTS -->
+  <div class="section-header" style="padding-top:80px;">
+    <h4>Handpicked for You</h4>
+    <h2>Featured Pieces</h2>
+  </div>
+  <section class="products">
+    <div class="product">
+      <div class="img-container"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900" alt="Silk Set"></div>
+      <div class="product-info"><h4>New In</h4><h3>Chartreuse Silk Two-Piece</h3><span>$2,400</span></div>
     </div>
-    <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1000">
+    <div class="product">
+      <div class="img-container"><img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=900" alt="Bucket Bag"></div>
+      <div class="product-info"><h4>Handbags</h4><h3>Heritage Bucket Bag</h3><span>$2,150</span></div>
+    </div>
+    <div class="product">
+      <div class="img-container"><img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900" alt="Ring"></div>
+      <div class="product-info"><h4>Jewelry</h4><h3>Kashmir Sapphire Band</h3><span>$18,600</span></div>
+    </div>
   </section>
 
   <footer>
-    <div>
-      <div class="logo" style="color: white; font-size: 24px; margin-bottom: 20px;"><a href="Index.html" style="color:white;">LUXE</a></div>
-      <p style="color: #666; font-size: 12px; max-width: 300px;">Experience the pinnacle of luxury. Join our world for exclusive previews and runway access.</p>
+    <div class="footer-brand">
+      <div class="logo"><a href="Index.html" style="color:white;text-decoration:none;">LUXE</a></div>
+      <p>Experience the pinnacle of luxury. Join our world for exclusive previews and runway access.</p>
     </div>
     <div>
       <h4>Services</h4>
@@ -326,5 +236,13 @@
     </div>
   </footer>
 
+  <script>
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('luxe_cart') || '[]');
+      const total = cart.reduce((s,i) => s + i.qty, 0);
+      document.getElementById('cart-nav-link').textContent = `Cart (${total})`;
+    }
+    updateCartCount();
+  </script>
 </body>
 </html>
