@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cart — LUXE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #111111;
+      --white: #ffffff;
+      --gold: #b5a264;
+      --cream: #f9f8f3;
+      --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* --- NAVIGATION --- */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .nav {
+      max-width: 1600px;
+      margin: auto;
+      padding: 25px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+    }
+
+    .logo a { text-decoration: none; color: inherit; }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--black);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0; height: 1px;
+      bottom: -5px; left: 0;
+      background: var(--black);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--gold); }
+
+    /* --- CART LAYOUT --- */
+    .cart-page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 160px 50px 100px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* PAGE TITLE */
+    .cart-title-block {
+      grid-column: 1 / -1;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 30px;
+      margin-bottom: 10px;
+    }
+
+    .cart-title-block h4 {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .cart-title-block h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    /* --- CART ITEMS --- */
+    .cart-items { }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding: 28px 0;
+      border-bottom: 1px solid #f0f0f0;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .cart-item-img {
+      width: 100px;
+      height: 120px;
+      object-fit: cover;
+      background: #f4f4f4;
+    }
+
+    .cart-item-details h3 {
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .cart-item-details .item-price {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 15px;
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .qty-btn {
+      width: 28px;
+      height: 28px;
+      border: 1px solid #ccc;
+      background: transparent;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .qty-btn:hover { border-color: var(--black); background: var(--black); color: white; }
+
+    .qty-number {
+      font-size: 14px;
+      font-weight: 600;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .remove-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #bbb;
+      font-size: 18px;
+      padding: 4px;
+      transition: 0.3s;
+      align-self: start;
+      margin-top: 2px;
+    }
+
+    .remove-btn:hover { color: #111; }
+
+    /* --- EMPTY STATE --- */
+    .empty-cart {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 80px 0;
+    }
+
+    .empty-cart h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-style: italic;
+      font-weight: 400;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    .empty-cart p {
+      color: #999;
+      font-size: 13px;
+      letter-spacing: 1px;
+      margin-bottom: 30px;
+    }
+
+    .shop-link {
+      display: inline-block;
+      padding: 14px 40px;
+      background: var(--black);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .shop-link:hover { background: #333; }
+
+    /* --- ORDER SUMMARY --- */
+    .order-summary {
+      background: var(--cream);
+      padding: 40px;
+      position: sticky;
+      top: 120px;
+    }
+
+    .order-summary h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-style: italic;
+      font-weight: 400;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 14px;
+      color: #555;
+    }
+
+    .summary-row.total {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--black);
+      border-top: 1px solid #ddd;
+      padding-top: 16px;
+      margin-top: 6px;
+    }
+
+    .summary-row.total span:last-child {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 18px;
+      color: var(--gold);
+    }
+
+    .promo-row {
+      display: flex;
+      gap: 0;
+      margin: 24px 0;
+    }
+
+    .promo-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-right: none;
+      font-size: 12px;
+      letter-spacing: 1px;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+    }
+
+    .promo-input:focus { border-color: var(--black); }
+
+    .promo-btn {
+      padding: 12px 20px;
+      border: 1px solid #ddd;
+      background: var(--black);
+      color: white;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .promo-btn:hover { background: #333; }
+
+    .checkout-btn {
+      width: 100%;
+      padding: 18px;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: var(--transition);
+      margin-top: 10px;
+    }
+
+    .checkout-btn:hover { background: #333; }
+
+    .secure-note {
+      text-align: center;
+      font-size: 11px;
+      color: #aaa;
+      letter-spacing: 1px;
+      margin-top: 16px;
+    }
+
+    /* --- YOU MAY ALSO LIKE --- */
+    .also-like {
+      grid-column: 1 / -1;
+      margin-top: 60px;
+      padding-top: 60px;
+      border-top: 1px solid #eee;
+    }
+
+    .also-like h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-style: italic;
+      font-weight: 400;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .suggestion-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .suggestion-item { text-align: center; }
+
+    .suggestion-item .img-container {
+      overflow: hidden;
+      background: #f4f4f4;
+      margin-bottom: 14px;
+    }
+
+    .suggestion-item img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      transition: var(--transition);
+      display: block;
+    }
+
+    .suggestion-item:hover img { transform: scale(1.05); }
+
+    .suggestion-item h3 {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .suggestion-item span {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 14px;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      background: var(--black);
+      color: white;
+      padding: 80px 50px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-top: 80px;
+    }
+
+    footer h4 {
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 3px;
+      margin-bottom: 30px;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    footer a {
+      display: block;
+      color: #aaa;
+      text-decoration: none;
+      font-size: 13px;
+      margin-bottom: 15px;
+      transition: 0.3s;
+    }
+
+    footer a:hover { color: white; }
+
+    @media (max-width: 1024px) {
+      .cart-page { grid-template-columns: 1fr; padding: 140px 30px 80px; }
+      .order-summary { position: static; }
+      .suggestion-grid { grid-template-columns: repeat(2, 1fr); }
+      footer { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .nav { padding: 20px 20px; }
+      .cart-page { padding: 120px 20px 60px; gap: 40px; }
+      footer { grid-template-columns: 1fr; padding: 60px 25px; }
+      .suggestion-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav">
+      <div class="logo"><a href="Index.html">LUXE</a></div>
+      <nav class="nav-links">
+        <a href="New in.html">New In</a>
+        <a href="handbags.html">Handbags</a>
+        <a href="ready-to-wear.html">Ready to Wear</a>
+        <a href="jewelry.html">Jewelry</a>
+      </nav>
+      <div class="nav-links">
+        <a href="#">Search</a>
+        <a href="cart.html" class="active" id="cart-nav-link">Cart (0)</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="cart-page">
+
+    <!-- TITLE -->
+    <div class="cart-title-block">
+      <h4>Your Selection</h4>
+      <h1>Shopping Cart</h1>
+    </div>
+
+    <!-- CART ITEMS COLUMN -->
+    <div>
+      <div id="cart-items-container">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- ORDER SUMMARY -->
+    <aside class="order-summary" id="order-summary">
+      <h2>Order Summary</h2>
+
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span id="subtotal">$0</span>
+      </div>
+      <div class="summary-row">
+        <span>Shipping</span>
+        <span>Complimentary</span>
+      </div>
+      <div class="summary-row">
+        <span>Import Duties</span>
+        <span>Calculated at checkout</span>
+      </div>
+
+      <div class="promo-row">
+        <input class="promo-input" type="text" placeholder="PROMO CODE">
+        <button class="promo-btn">Apply</button>
+      </div>
+
+      <div class="summary-row total">
+        <span>Estimated Total</span>
+        <span id="total-price">$0</span>
+      </div>
+
+      <button class="checkout-btn">Proceed to Checkout</button>
+      <p class="secure-note">🔒 Secure Checkout · Free Returns</p>
+    </aside>
+
+    <!-- YOU MAY ALSO LIKE -->
+    <div class="also-like">
+      <h2>You May Also Like</h2>
+      <div class="suggestion-grid">
+        <div class="suggestion-item">
+          <a href="jewelry.html"><div class="img-container">
+            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800" alt="Diamond Ring">
+          </div></a>
+          <h3>Soleil Diamond Solitaire</h3>
+          <span>$12,400</span>
+        </div>
+        <div class="suggestion-item">
+          <a href="handbags.html"><div class="img-container">
+            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800" alt="Tote Bag">
+          </div></a>
+          <h3>Signature Leather Tote</h3>
+          <span>$2,850</span>
+        </div>
+        <div class="suggestion-item">
+          <a href="ready-to-wear.html"><div class="img-container">
+            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800" alt="Coat">
+          </div></a>
+          <h3>Cashmere Wrap Overcoat</h3>
+          <span>$4,200</span>
+        </div>
+        <div class="suggestion-item">
+          <a href="New in.html"><div class="img-container">
+            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800" alt="Gown">
+          </div></a>
+          <h3>Embroidered Tulle Gown</h3>
+          <span>$5,800</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div>
+      <div style="font-family:'Playfair Display',serif; font-size:24px; letter-spacing:6px; color:white; margin-bottom:20px;">
+        <a href="Index.html" style="color:white; text-decoration:none;">LUXE</a>
+      </div>
+      <p style="color:#777; font-size:13px; max-width:280px; line-height:1.8;">Experience the pinnacle of luxury. Join our world for exclusive previews and runway access.</p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <a href="#">Book an Appointment</a>
+      <a href="#">Collect in Store</a>
+      <a href="#">Gifting</a>
+    </div>
+    <div>
+      <h4>The House</h4>
+      <a href="#">Our Story</a>
+      <a href="#">Sustainability</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="#">Client Advisors</a>
+      <a href="#">Instagram</a>
+    </div>
+  </footer>
+
+  <script>
+    // Placeholder images for cart items (mapping by name)
+    const productImages = {
+      'Soleil Diamond Solitaire': 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=200',
+      'Akoya Pearl Strand': 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=200',
+      '18K Gold Cuff': 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=200',
+      'Pavé Drop Earrings': 'https://images.unsplash.com/photo-1573408301185-9519f94816b5?auto=format&fit=crop&w=200',
+      'Kashmir Sapphire Band': 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=200',
+      'Vermeil Chain Pendant': 'https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?auto=format&fit=crop&w=200',
+    };
+
+    const fallbackImg = 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=200';
+
+    function getCart() {
+      return JSON.parse(localStorage.getItem('luxe_cart') || '[]');
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem('luxe_cart', JSON.stringify(cart));
+    }
+
+    function formatPrice(n) {
+      return '$' + n.toLocaleString('en-US');
+    }
+
+    function renderCart() {
+      const cart = getCart();
+      const container = document.getElementById('cart-items-container');
+      const summaryEl = document.getElementById('order-summary');
+      container.innerHTML = '';
+
+      if (cart.length === 0) {
+        // Hide summary, show empty state inside items column
+        summaryEl.style.display = 'none';
+        container.innerHTML = `
+          <div class="empty-cart">
+            <h2>Your cart is empty</h2>
+            <p>Discover our latest collections</p>
+            <a href="New in.html" class="shop-link">Shop New In</a>
+          </div>`;
+        updateNavCount(0);
+        return;
+      }
+
+      summaryEl.style.display = '';
+
+      let subtotal = 0;
+
+      cart.forEach((item, index) => {
+        subtotal += item.price * item.qty;
+        const img = productImages[item.name] || fallbackImg;
+
+        const el = document.createElement('div');
+        el.className = 'cart-item';
+        el.innerHTML = `
+          <img class="cart-item-img" src="${img}" alt="${item.name}">
+          <div class="cart-item-details">
+            <h3>${item.name}</h3>
+            <div class="item-price">${formatPrice(item.price)}</div>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="changeQty(${index}, -1)">−</button>
+              <span class="qty-number">${item.qty}</span>
+              <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+            </div>
+          </div>
+          <button class="remove-btn" onclick="removeItem(${index})" title="Remove">✕</button>
+        `;
+        container.appendChild(el);
+      });
+
+      document.getElementById('subtotal').textContent = formatPrice(subtotal);
+      document.getElementById('total-price').textContent = formatPrice(subtotal);
+      updateNavCount(cart.reduce((s, i) => s + i.qty, 0));
+    }
+
+    function changeQty(index, delta) {
+      let cart = getCart();
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) cart.splice(index, 1);
+      saveCart(cart);
+      renderCart();
+    }
+
+    function removeItem(index) {
+      let cart = getCart();
+      cart.splice(index, 1);
+      saveCart(cart);
+      renderCart();
+    }
+
+    function updateNavCount(total) {
+      document.getElementById('cart-nav-link').textContent = `Cart (${total})`;
+    }
+
+    renderCart();
+  </script>
+
+</body>
+</html>
