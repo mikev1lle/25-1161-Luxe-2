@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fashion Shows — LUXE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #111111;
+      --white: #ffffff;
+      --gold: #b5a264;
+      --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); line-height: 1.6; }
+
+    /* NAV */
+    header { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(17,17,17,0.97); border-bottom: 1px solid #222; }
+    .nav { max-width: 1600px; margin: auto; padding: 25px 50px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; letter-spacing: 6px; text-transform: uppercase; }
+    .logo a { text-decoration: none; color: var(--white); }
+    .nav-links { display: flex; gap: 35px; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+    .nav-links a { text-decoration: none; color: #888; position: relative; transition: color 0.3s; }
+    .nav-links a::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -5px; left: 0; background: var(--white); transition: var(--transition); }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--gold); }
+    .nav-links a.active::after { width: 100%; background: var(--gold); }
+
+    /* HERO */
+    .hero { position: relative; height: 80vh; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; padding: 0 7% 80px; overflow: hidden; }
+    .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(17,17,17,0.9) 100%); }
+    .hero-bg video { width: 100%; height: 100%; object-fit: cover; }
+    .hero-text { position: relative; z-index: 1; }
+    .eyebrow { font-size: 11px; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; display: block; }
+    .hero-text h1 { font-family: 'Playfair Display', serif; font-size: clamp(52px, 9vw, 100px); font-style: italic; font-weight: 400; line-height: 1.0; margin-bottom: 22px; }
+    .hero-text p { font-size: 13px; color: #888; letter-spacing: 1px; max-width: 480px; }
+
+    /* TICKER */
+    .ticker { border-top: 1px solid #1e1e1e; border-bottom: 1px solid #1e1e1e; padding: 14px 0; overflow: hidden; }
+    .ticker-track { display: flex; gap: 60px; white-space: nowrap; animation: ticker 35s linear infinite; }
+    .ticker-track span { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: #333; }
+    .ticker-track span.g { color: var(--gold); }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* SECTION LABEL */
+    .section-label { display: flex; align-items: center; gap: 20px; padding: 70px 7% 40px; }
+    .section-label h4 { font-size: 11px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; white-space: nowrap; }
+    .section-label .rule { flex: 1; height: 1px; background: #1e1e1e; }
+
+    /* FEATURED VIDEO */
+    .featured { padding: 0 7% 70px; }
+    .featured-wrap {
+      position: relative; width: 100%; padding-bottom: 56.25%;
+      background: #0a0a0a; overflow: hidden; border: 1px solid #1a1a1a;
+    }
+    .featured-wrap .thumb {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      cursor: pointer; transition: transform 0.6s ease;
+    }
+    .featured-wrap:hover .thumb { transform: scale(1.02); }
+    .featured-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; display: none; }
+    .featured-wrap.playing .thumb { display: none; }
+    .featured-wrap.playing iframe { display: block; }
+    .featured-wrap .big-play {
+      position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: opacity 0.3s;
+    }
+    .featured-wrap.playing .big-play { display: none; }
+    .big-play-btn {
+      width: 80px; height: 80px; border: 1.5px solid rgba(255,255,255,0.8);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .featured-wrap:hover .big-play-btn { transform: scale(1.1); border-color: var(--gold); }
+    .big-play-btn svg { width: 26px; height: 26px; fill: white; margin-left: 6px; }
+    .featured-meta { display: flex; justify-content: space-between; align-items: flex-end; padding: 22px 0 0; border-top: 1px solid #1a1a1a; }
+    .featured-meta h2 { font-family: 'Playfair Display', serif; font-size: clamp(18px, 2.2vw, 28px); font-style: italic; font-weight: 400; }
+    .featured-meta .tag { font-size: 11px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; }
+
+    /* VIDEO GRID */
+    .grid-section { padding: 0 7% 100px; }
+    .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+
+    .video-card { background: #0d0d0d; border: 1px solid #1a1a1a; transition: border-color 0.3s; overflow: hidden; }
+    .video-card:hover { border-color: #2e2e2e; }
+
+    .thumb-wrap { position: relative; width: 100%; padding-bottom: 56.25%; background: #111; overflow: hidden; cursor: pointer; }
+    .thumb-wrap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .video-card:hover .thumb-wrap img { transform: scale(1.04); }
+    .thumb-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; display: none; }
+    .video-card.playing .thumb-wrap img { display: none; }
+    .video-card.playing .thumb-wrap iframe { display: block; }
+
+    .card-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      background: rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s;
+    }
+    .video-card:hover .card-overlay { background: rgba(0,0,0,0.05); }
+    .video-card.playing .card-overlay { display: none; }
+
+    .mini-btn {
+      width: 54px; height: 54px; border: 1.5px solid rgba(255,255,255,0.75);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: scale(0.8); transition: all 0.3s;
+    }
+    .video-card:hover .mini-btn { opacity: 1; transform: scale(1); }
+    .mini-btn svg { width: 16px; height: 16px; fill: white; margin-left: 4px; }
+
+    .card-info { padding: 18px 20px 22px; }
+    .card-info .house { font-size: 10px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 7px; }
+    .card-info h3 { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 5px; font-weight: 600; }
+    .card-info p { font-size: 11px; color: #555; }
+
+    /* FOOTER */
+    footer { background: var(--black); color: white; padding: 100px 50px; border-top: 1px solid #1a1a1a; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; }
+    footer h4 { text-transform: uppercase; font-size: 11px; letter-spacing: 3px; margin-bottom: 30px; color: var(--gold); font-weight: 600; }
+    footer a { display: block; color: #555; text-decoration: none; font-size: 13px; margin-bottom: 15px; transition: 0.3s; }
+    footer a:hover { color: white; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-brand p { color: #444; font-size: 13px; max-width: 280px; line-height: 1.8; }
+
+    @media(max-width:1024px) { .video-grid{grid-template-columns:repeat(2,1fr);} footer{grid-template-columns:1fr 1fr;} .nav{padding:25px 30px;} }
+    @media(max-width:600px) { .video-grid{grid-template-columns:1fr;} .nav{padding:20px 20px;} .hero{padding:0 6% 60px;} .section-label,.featured,.grid-section{padding-left:6%;padding-right:6%;} footer{grid-template-columns:1fr;padding:60px 25px;} }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav">
+      <div class="logo"><a href="Index.html">LUXE</a></div>
+      <nav class="nav-links">
+        <a href="New in.html">New In</a>
+        <a href="handbags.html">Handbags</a>
+        <a href="ready-to-wear.html">Ready to Wear</a>
+        <a href="jewelry.html">Jewelry</a>
+        <a href="fashion-shows.html" class="active">Shows</a>
+      </nav>
+      <div class="nav-links">
+        <a href="#">Search</a>
+        <a href="cart.html" id="cart-nav-link">Cart (0)</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="https://videos.pexels.com/video-files/6896428/6896428-uhd_2560_1440_25fps.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-text">
+      <span class="eyebrow">The Runway</span>
+      <h1>Fashion<br>Shows</h1>
+      <p>Front row access to the world's most iconic runway presentations — from Paris to Milan, New York to London.</p>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="g">Paris</span><span>·</span><span>Milan</span><span>·</span><span class="g">New York</span><span>·</span><span>London</span><span>·</span><span class="g">Tokyo</span><span>·</span><span>SS26</span><span>·</span><span class="g">AW26</span><span>·</span><span>Haute Couture</span><span>·</span><span class="g">Prêt-à-Porter</span><span>·</span><span>Resort</span><span>·</span>
+      <span class="g">Paris</span><span>·</span><span>Milan</span><span>·</span><span class="g">New York</span><span>·</span><span>London</span><span>·</span><span class="g">Tokyo</span><span>·</span><span>SS26</span><span>·</span><span class="g">AW26</span><span>·</span><span>Haute Couture</span><span>·</span><span class="g">Prêt-à-Porter</span><span>·</span><span>Resort</span><span>·</span>
+    </div>
+  </div>
+
+  <!-- FEATURED SHOW -->
+  <div class="section-label">
+    <h4>Featured Show</h4>
+    <div class="rule"></div>
+  </div>
+
+  <div class="featured">
+    <div class="featured-wrap" id="feat-wrap">
+      <img class="thumb" src="https://img.youtube.com/vi/s5DM32kqUKs/maxresdefault.jpg" alt="Chanel SS25">
+      <iframe id="feat-iframe" src="" allowfullscreen></iframe>
+      <div class="big-play" onclick="playFeatured()">
+        <div class="big-play-btn">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="featured-meta">
+      <h2>Chanel — Spring / Summer 2025</h2>
+      <span class="tag">Paris Fashion Week</span>
+    </div>
+  </div>
+
+  <!-- ALL SHOWS GRID -->
+  <div class="section-label">
+    <h4>All Shows</h4>
+    <div class="rule"></div>
+  </div>
+
+  <div class="grid-section">
+    <div class="video-grid">
+
+      <div class="video-card" onclick="playCard(this,'7VnGKFKCNpA')">
+        <div class="thumb-wrap">
+          <img src="https://img.youtube.com/vi/7VnGKFKCNpA/mqdefault.jpg" alt="Dior SS25">
+          <iframe src="" allowfullscreen></iframe>
+          <div class="card-overlay"><div class="mini-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+        </div>
+        <div class="card-info">
+          <div class="house">Christian Dior</div>
+          <h3>Spring / Summer 2025</h3>
+          <p>Paris Fashion Week · Womenswear</p>
+        </div>
+      </div>
+
+      <div class="video-card" onclick="playCard(this,'qREtAs9LRSE')">
+        <div class="thumb-wrap">
+          <img src="https://img.youtube.com/vi/qREtAs9LRSE/mqdefault.jpg" alt="Louis Vuitton SS25">
+          <iframe src="" allowfullscreen></iframe>
+          <div class="card-overlay"><div class="mini-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+        </div>
+        <div class="card-info">
+          <div class="house">Louis Vuitton</div>
+          <h3>Spring / Summer 2025</h3>
+          <p>Paris Fashion Week · Womenswear</p>
+        </div>
+      </div>
+
+      <div class="video-card" onclick="playCard(this,'HlNFQdUnaXk')">
+        <div class="thumb-wrap">
+          <img src="https://img.youtube.com/vi/HlNFQdUnaXk/mqdefault.jpg" alt="Gucci SS25">
+          <iframe src="" allowfullscreen></iframe>
+          <div class="card-overlay"><div class="mini-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+        </div>
+        <div class="card-info">
+          <div class="house">Gucci</div>
+          <h3>Spring / Summer 2025</h3>
+          <p>Milan Fashion Week · Womenswear</p>
+        </div>
+      </div>
+
+      <div class="video-card" onclick="playCard(this,'9XhRCFDTALQ')">
+        <div class="thumb-wrap">
+          <img src="https://img.youtube.com/vi/9XhRCFDTALQ/mqdefault.jpg" alt="Valentino AW25">
+          <iframe src="" allowfullscreen></iframe>
+          <div class="card-overlay"><div class="mini-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+        </div>
+        <div class="card-info">
+          <div class="house">Valentino</div>
+          <h3>Autumn / Winter 2025</h3>
+          <p>Milan Fashion Week · Womenswear</p>
+        </div>
+      </div>
+
+      <div class="video-card" onclick="playCard(this,'kQqNXkYILGQ')">
+        <div class="thumb-wrap">
+          <img src="https://img.youtube.com/vi/kQqNXkYILGQ/mqdefault.jpg" alt="Versace AW25">
+          <iframe src="" allowfullscreen></iframe>
+          <div class="card-overlay"><div class="mini-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+        </div>
+        <div class="card-info">
+          <div class="house">Versace</div>
+          <h3>Autumn / Winter 2025</h3>
+          <p>Milan Fashion Week · Womenswear</p>
+        </div>
+      </div>
+
+      <div class="video-card" onclick="playCard(this,'A6OtRiCOqgA')">
+        <div class="thumb-wrap">
+          <img src="https://img.youtube.com/vi/A6OtRiCOqgA/mqdefault.jpg" alt="Balenciaga SS25">
+          <iframe src="" allowfullscreen></iframe>
+          <div class="card-overlay"><div class="mini-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+        </div>
+        <div class="card-info">
+          <div class="house">Balenciaga</div>
+          <h3>Spring / Summer 2025</h3>
+          <p>Paris Fashion Week · Womenswear</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-brand">
+      <div class="footer-logo">LUXE</div>
+      <p>Experience the pinnacle of luxury. Join our world for exclusive previews and runway access.</p>
+    </div>
+    <div><h4>Services</h4><a href="#">Book an Appointment</a><a href="#">Collect in Store</a><a href="#">Gifting</a></div>
+    <div><h4>The House</h4><a href="#">Our Story</a><a href="#">Sustainability</a><a href="#">Code of Ethics</a></div>
+    <div><h4>Contact</h4><a href="#">Client Advisors</a><a href="#">WhatsApp</a><a href="#">Instagram</a></div>
+  </footer>
+
+  <script>
+    /* Featured: swap thumbnail for iframe */
+    function playFeatured() {
+      const wrap = document.getElementById('feat-wrap');
+      if (wrap.classList.contains('playing')) return;
+      document.getElementById('feat-iframe').src =
+        'https://www.youtube.com/embed/s5DM32kqUKs?autoplay=1&rel=0';
+      wrap.classList.add('playing');
+    }
+
+    /* Grid cards: inject src on click, pause others */
+    function playCard(card, videoId) {
+      if (card.classList.contains('playing')) return;
+      document.querySelectorAll('.video-card.playing').forEach(c => {
+        c.classList.remove('playing');
+        c.querySelector('iframe').src = '';
+      });
+      card.querySelector('iframe').src =
+        `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+      card.classList.add('playing');
+    }
+
+    /* Cart count sync */
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('luxe_cart') || '[]');
+      const total = cart.reduce((s, i) => s + i.qty, 0);
+      document.getElementById('cart-nav-link').textContent = `Cart (${total})`;
+    }
+    updateCartCount();
+  </script>
+</body>
+</html>
