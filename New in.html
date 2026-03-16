@@ -4,277 +4,165 @@
   <meta charset="UTF-8" />
   <title>New In — LUXE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
   <style>
-    :root {
-      --black: #111111;
-      --white: #ffffff;
-      --gold: #b5a264; 
-      --cream: #f9f8f3;
-      --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--white);
-      color: var(--black);
-      line-height: 1.6;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(255,255,255,0.95);
-      border-bottom: 1px solid #e0e0e0;
-    }
-
-    .nav {
-      max-width: 1600px;
-      margin: auto;
-      padding: 25px 50px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 32px;
-      font-weight: 700;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-    }
-
-    .logo a { text-decoration: none; color: inherit; }
-
-    .nav-links {
-      display: flex;
-      gap: 35px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--black);
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      width: 0; height: 1px;
-      bottom: -5px; left: 0;
-      background: var(--black);
-      transition: var(--transition);
-    }
-
-    .nav-links a:hover::after { width: 100%; }
-
-    /* --- VIDEO HEADER SECTION --- */
-    .collection-header {
-      position: relative;
-      height: 75vh;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      color: var(--white);
-      text-align: center;
-    }
-
-    .video-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    /* Dark overlay to make the text pop */
-    .video-background::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.3); 
-    }
-
-    .video-background video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Ensures video fills the area without stretching */
-    }
-
-    .collection-header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(40px, 8vw, 80px);
-      font-style: italic;
-      font-weight: 400;
-      text-shadow: 2px 2px 15px rgba(0,0,0,0.4);
-    }
-
-    /* --- PRODUCT GRID --- */
-    .products {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      padding: 80px 5%;
-    }
-
-    .product {
-      text-align: center;
-      overflow: hidden;
-      margin-bottom: 40px;
-    }
-
-    .img-container {
-      overflow: hidden;
-      background: #f4f4f4;
-      margin-bottom: 20px;
-    }
-
-    .product img {
-      width: 100%;
-      height: 800px;
-      object-fit: cover;
-      transition: var(--transition);
-      display: block;
-    }
-
-    .product:hover img { transform: scale(1.05); }
-
-    .product-info h3 {
-      font-size: 14px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 5px;
-    }
-
-    .product-info span {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      color: var(--gold);
-    }
-
-    footer {
-      background: var(--black);
-      color: white;
-      padding: 100px 50px;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 40px;
-    }
-
-    .footer-brand .logo {
-      color: white;
-      font-size: 28px;
-      margin-bottom: 30px;
-    }
-
-    footer h4 {
-      text-transform: uppercase;
-      font-size: 11px;
-      letter-spacing: 3px;
-      margin-bottom: 30px;
-      color: var(--gold);
-      font-weight: 600;
-    }
-
-    footer a {
-      display: block;
-      color: #aaa;
-      text-decoration: none;
-      font-size: 13px;
-      margin-bottom: 15px;
-    }
-
-    footer a:hover { color: white; }
-
-    @media (max-width: 1024px) {
-      .products { grid-template-columns: 1fr; }
-      footer { grid-template-columns: 1fr 1fr; }
-    }
+    :root { --black:#111111; --white:#ffffff; --gold:#b5a264; --cream:#f9f8f3; --transition:all 0.6s cubic-bezier(0.16,1,0.3,1); }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter',sans-serif; background:var(--white); color:var(--black); line-height:1.6; }
+    header { position:fixed; top:0; width:100%; z-index:1000; background:rgba(255,255,255,0.95); border-bottom:1px solid #e0e0e0; }
+    .nav { max-width:1600px; margin:auto; padding:25px 50px; display:flex; justify-content:space-between; align-items:center; }
+    .logo { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; letter-spacing:6px; text-transform:uppercase; }
+    .logo a { text-decoration:none; color:inherit; }
+    .nav-links { display:flex; gap:35px; font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; }
+    .nav-links a { text-decoration:none; color:var(--black); position:relative; }
+    .nav-links a::after { content:''; position:absolute; width:0; height:1px; bottom:-5px; left:0; background:var(--black); transition:var(--transition); }
+    .nav-links a:hover::after { width:100%; }
+    .nav-links a.active { color:var(--gold); }
+    .nav-links a.active::after { width:100%; background:var(--gold); }
+    .collection-header { position:relative; height:75vh; width:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; overflow:hidden; color:var(--white); text-align:center; }
+    .video-bg { position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
+    .video-bg::after { content:''; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.42); }
+    .video-bg video { width:100%; height:100%; object-fit:cover; }
+    .header-content { position:relative; z-index:1; text-align:center; }
+    .header-content h4 { letter-spacing:4px; font-size:12px; margin-bottom:10px; color:var(--gold); text-transform:uppercase; }
+    .header-content h1 { font-family:'Playfair Display',serif; font-size:clamp(40px,8vw,80px); font-style:italic; font-weight:400; text-shadow:2px 2px 15px rgba(0,0,0,0.4); }
+    .category-filter { padding:40px 5%; text-align:center; border-bottom:1px solid #f0f0f0; display:flex; justify-content:center; gap:40px; }
+    .filter-link { text-decoration:none; color:#888; font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:var(--transition); cursor:pointer; }
+    .filter-link:hover, .filter-link.active { color:var(--black); }
+    .products { display:grid; grid-template-columns:repeat(3,1fr); gap:40px 20px; padding:60px 5%; }
+    .product { text-align:center; margin-bottom:20px; }
+    .img-container { overflow:hidden; background:#f4f4f4; margin-bottom:20px; }
+    .product img { width:100%; height:580px; object-fit:cover; transition:var(--transition); display:block; }
+    .product:hover img { transform:scale(1.05); }
+    .product-info h4 { font-size:10px; color:#999; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px; }
+    .product-info h3 { font-size:13px; letter-spacing:2px; text-transform:uppercase; margin-bottom:5px; }
+    .product-info span { font-family:'Playfair Display',serif; font-style:italic; color:var(--gold); }
+    .add-to-cart-btn { display:inline-block; margin-top:14px; padding:10px 28px; border:1px solid var(--black); background:transparent; font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:600; cursor:pointer; transition:var(--transition); font-family:'Inter',sans-serif; }
+    .add-to-cart-btn:hover { background:var(--black); color:var(--white); }
+    .editorial-banner { display:grid; grid-template-columns:1fr 1fr; min-height:500px; margin:40px 5% 80px; }
+    .editorial-img { overflow:hidden; }
+    .editorial-img img { width:100%; height:100%; object-fit:cover; transition:var(--transition); }
+    .editorial-img:hover img { transform:scale(1.03); }
+    .editorial-text { background:var(--black); color:var(--white); display:flex; flex-direction:column; justify-content:center; padding:60px; }
+    .editorial-text h4 { font-size:11px; letter-spacing:4px; color:var(--gold); text-transform:uppercase; margin-bottom:20px; }
+    .editorial-text h2 { font-family:'Playfair Display',serif; font-size:clamp(28px,3vw,44px); font-style:italic; font-weight:400; line-height:1.3; margin-bottom:20px; }
+    .editorial-text p { color:#aaa; font-size:13px; line-height:1.9; max-width:380px; margin-bottom:30px; }
+    .editorial-link { display:inline-block; color:var(--gold); font-size:11px; letter-spacing:3px; text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--gold); padding-bottom:4px; transition:0.3s; }
+    .editorial-link:hover { opacity:0.7; }
+    footer { background:var(--black); color:white; padding:100px 50px; display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; }
+    footer h4 { text-transform:uppercase; font-size:11px; letter-spacing:3px; margin-bottom:30px; color:var(--gold); font-weight:600; }
+    footer a { display:block; color:#aaa; text-decoration:none; font-size:13px; margin-bottom:15px; transition:0.3s; }
+    footer a:hover { color:white; }
+    .footer-brand p { color:#777; font-size:13px; max-width:280px; line-height:1.8; margin-top:16px; }
+    @media(max-width:1024px) { .products{grid-template-columns:repeat(2,1fr);} .editorial-banner{grid-template-columns:1fr;} footer{grid-template-columns:1fr 1fr;} }
+    @media(max-width:600px) { .products{grid-template-columns:1fr;} .nav{padding:20px 20px;} footer{grid-template-columns:1fr; padding:60px 25px;} }
   </style>
 </head>
 <body>
-
   <header>
     <div class="nav">
       <div class="logo"><a href="Index.html">LUXE</a></div>
       <nav class="nav-links">
-        <a href="New in.html">New In</a>
+        <a href="New in.html" class="active">New In</a>
         <a href="handbags.html">Handbags</a>
         <a href="ready-to-wear.html">Ready to Wear</a>
         <a href="jewelry.html">Jewelry</a>
+        <a href="fashion-shows.html">Shows</a>
       </nav>
       <div class="nav-links">
         <a href="#">Search</a>
-        <a href="#">Cart (0)</a>
+        <a href="cart.html" id="cart-nav-link">Cart (0)</a>
       </div>
     </div>
   </header>
-
   <section class="collection-header">
-    <div class="video-background">
+    <div class="video-bg">
       <video autoplay muted loop playsinline preload="auto">
-        <source src="Videos/0123.mp4" type="video/mp4">
-        Your browser does not support the video tag.
+        <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_25fps.mp4" type="video/mp4">
       </video>
     </div>
-    <h4 style="letter-spacing: 4px; font-size: 12px; margin-bottom: 10px; color: var(--gold);">SPRING / SUMMER 2026</h4>
-    <h1>The New Arrivals</h1>
+    <div class="header-content">
+      <h4>Spring / Summer 2026</h4>
+      <h1>The New Arrivals</h1>
+    </div>
   </section>
-
+  <nav class="category-filter">
+    <a class="filter-link active">All</a>
+    <a class="filter-link">Women</a>
+    <a class="filter-link">Men</a>
+    <a class="filter-link">Accessories</a>
+  </nav>
   <section class="products">
     <div class="product">
-      <div class="img-container"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1200" alt="Velvet Runway Look"></div>
-      <div class="product-info"><h3>Velvet Evening Blazer</h3><span>$3,200</span></div>
+      <div class="img-container"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=900" alt="Velvet Blazer"></div>
+      <div class="product-info"><h4>Women</h4><h3>Velvet Evening Blazer</h3><span>$3,200</span><br>
+        <button class="add-to-cart-btn" onclick="addToCart('Velvet Evening Blazer',3200)">Add to Cart</button></div>
     </div>
-
     <div class="product">
-      <div class="img-container"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200" alt="Tulle Details"></div>
-      <div class="product-info"><h3>Embroidered Tulle Gown</h3><span>$5,800</span></div>
+      <div class="img-container"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900" alt="Tulle Gown"></div>
+      <div class="product-info"><h4>Women</h4><h3>Embroidered Tulle Gown</h3><span>$5,800</span><br>
+        <button class="add-to-cart-btn" onclick="addToCart('Embroidered Tulle Gown',5800)">Add to Cart</button></div>
     </div>
-
     <div class="product">
-      <div class="img-container"><img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?auto=format&fit=crop&w=1200" alt="Heritage Bag"></div>
-      <div class="product-info"><h3>Heritage Monogram Bucket Bag</h3><span>$2,150</span></div>
+      <div class="img-container"><img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?auto=format&fit=crop&w=900" alt="Bucket Bag"></div>
+      <div class="product-info"><h4>Accessories</h4><h3>Heritage Monogram Bucket Bag</h3><span>$2,150</span><br>
+        <button class="add-to-cart-btn" onclick="addToCart('Heritage Monogram Bucket Bag',2150)">Add to Cart</button></div>
     </div>
-
     <div class="product">
-      <div class="img-container"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200" alt="Silk Set"></div>
-      <div class="product-info"><h3>Chartreuse Silk Two-Piece</h3><span>$2,400</span></div>
+      <div class="img-container"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900" alt="Silk Set"></div>
+      <div class="product-info"><h4>Women</h4><h3>Chartreuse Silk Two-Piece</h3><span>$2,400</span><br>
+        <button class="add-to-cart-btn" onclick="addToCart('Chartreuse Silk Two-Piece',2400)">Add to Cart</button></div>
+    </div>
+    <div class="product">
+      <div class="img-container"><img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=900" alt="Navy Suit"></div>
+      <div class="product-info"><h4>Men</h4><h3>Structured Midnight Navy Suit</h3><span>$5,100</span><br>
+        <button class="add-to-cart-btn" onclick="addToCart('Structured Midnight Navy Suit',5100)">Add to Cart</button></div>
+    </div>
+    <div class="product">
+      <div class="img-container"><img src="https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=900" alt="Evening Clutch"></div>
+      <div class="product-info"><h4>Accessories</h4><h3>Midnight Satin Clutch</h3><span>$1,400</span><br>
+        <button class="add-to-cart-btn" onclick="addToCart('Midnight Satin Clutch',1400)">Add to Cart</button></div>
     </div>
   </section>
-
+  <div class="editorial-banner">
+    <div class="editorial-img"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200" alt="New Season Editorial"></div>
+    <div class="editorial-text">
+      <h4>The Season's Edit</h4>
+      <h2>Dressed for<br>Every Moment</h2>
+      <p>From morning meetings to candlelit evenings, the SS26 collection moves with the rhythm of your life — effortlessly refined, unmistakably LUXE.</p>
+      <a href="ready-to-wear.html" class="editorial-link">Explore Ready to Wear</a>
+    </div>
+  </div>
   <footer>
     <div class="footer-brand">
-      <div class="logo"><a href="Index.html" style="color:white; text-decoration:none;">LUXE</a></div>
-      <p style="color: #777; font-size: 13px; max-width: 280px;">Experience the pinnacle of luxury.</p>
+      <div class="logo"><a href="Index.html" style="color:white;text-decoration:none;">LUXE</a></div>
+      <p>Experience the pinnacle of luxury. Join our world for exclusive previews and runway access.</p>
     </div>
-    <div>
-      <h4>The House</h4>
-      <a href="#">Our Story</a>
-      <a href="#">Sustainability</a>
-    </div>
-    <div>
-      <h4>Contact</h4>
-      <a href="#">Client Advisors</a>
-      <a href="#">Instagram</a>
-    </div>
+    <div><h4>Services</h4><a href="#">Book an Appointment</a><a href="#">Collect in Store</a><a href="#">Gifting</a></div>
+    <div><h4>The House</h4><a href="#">Our Story</a><a href="#">Sustainability</a><a href="#">Code of Ethics</a></div>
+    <div><h4>Contact</h4><a href="#">Client Advisors</a><a href="#">WhatsApp</a><a href="#">Instagram</a></div>
   </footer>
-
+  <script>
+    document.querySelectorAll('.filter-link').forEach(l => l.addEventListener('click', function() {
+      document.querySelectorAll('.filter-link').forEach(x => x.classList.remove('active'));
+      this.classList.add('active');
+    }));
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem('luxe_cart') || '[]');
+      const ex = cart.find(i => i.name === name);
+      if (ex) ex.qty += 1; else cart.push({ name, price, qty: 1 });
+      localStorage.setItem('luxe_cart', JSON.stringify(cart));
+      updateCartCount();
+      const btn = event.target;
+      btn.textContent = 'Added ✓'; btn.style.background = '#111'; btn.style.color = '#fff';
+      setTimeout(() => { btn.textContent = 'Add to Cart'; btn.style.background = ''; btn.style.color = ''; }, 1500);
+    }
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('luxe_cart') || '[]');
+      const total = cart.reduce((s, i) => s + i.qty, 0);
+      document.getElementById('cart-nav-link').textContent = `Cart (${total})`;
+    }
+    updateCartCount();
+  </script>
 </body>
 </html>
