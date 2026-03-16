@@ -9,7 +9,6 @@
     :root { --black:#111111; --white:#ffffff; --gold:#b5a264; --cream:#f9f8f3; --transition:all 0.6s cubic-bezier(0.16,1,0.3,1); }
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Inter',sans-serif; background:var(--white); color:var(--black); line-height:1.6; min-height:100vh; }
-
     header { position:fixed; top:0; width:100%; z-index:1000; background:rgba(255,255,255,0.95); border-bottom:1px solid #e0e0e0; }
     .nav { max-width:1600px; margin:auto; padding:25px 50px; display:flex; justify-content:space-between; align-items:center; }
     .logo { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; letter-spacing:6px; text-transform:uppercase; }
@@ -19,24 +18,14 @@
     .nav-links a::after { content:''; position:absolute; width:0; height:1px; bottom:-5px; left:0; background:var(--black); transition:var(--transition); }
     .nav-links a:hover::after { width:100%; }
     .nav-links a.active { color:var(--gold); }
-
-    /* CART HERO — video behind the title */
-    .cart-hero {
-      position:relative; height:40vh; width:100%;
-      display:flex; flex-direction:column; justify-content:center; align-items:center;
-      overflow:hidden; color:var(--white); text-align:center;
-    }
+    .cart-hero { position:relative; height:40vh; width:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; overflow:hidden; color:var(--white); text-align:center; }
     .video-bg { position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
     .video-bg::after { content:''; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.50); }
     .video-bg video { width:100%; height:100%; object-fit:cover; }
     .hero-content { position:relative; z-index:1; }
     .hero-content h4 { letter-spacing:4px; font-size:12px; margin-bottom:10px; color:var(--gold); text-transform:uppercase; }
     .hero-content h1 { font-family:'Playfair Display',serif; font-size:clamp(36px,6vw,68px); font-style:italic; font-weight:400; text-shadow:2px 2px 15px rgba(0,0,0,0.4); }
-
-    /* CART LAYOUT */
     .cart-page { max-width:1200px; margin:0 auto; padding:60px 50px 100px; display:grid; grid-template-columns:1fr 380px; gap:60px; align-items:start; }
-
-    /* CART ITEMS */
     .cart-item { display:grid; grid-template-columns:100px 1fr auto; gap:24px; align-items:center; padding:28px 0; border-bottom:1px solid #f0f0f0; animation:fadeIn 0.4s ease forwards; }
     @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
     .cart-item-img { width:100px; height:120px; object-fit:cover; background:#f4f4f4; }
@@ -48,15 +37,11 @@
     .qty-number { font-size:14px; font-weight:600; min-width:20px; text-align:center; }
     .remove-btn { background:none; border:none; cursor:pointer; color:#bbb; font-size:18px; padding:4px; transition:0.3s; align-self:start; margin-top:2px; }
     .remove-btn:hover { color:#111; }
-
-    /* EMPTY */
     .empty-cart { grid-column:1/-1; text-align:center; padding:80px 0; }
     .empty-cart h2 { font-family:'Playfair Display',serif; font-size:36px; font-style:italic; font-weight:400; color:#ccc; margin-bottom:20px; }
     .empty-cart p { color:#999; font-size:13px; letter-spacing:1px; margin-bottom:30px; }
     .shop-link { display:inline-block; padding:14px 40px; background:var(--black); color:var(--white); text-decoration:none; font-size:11px; letter-spacing:3px; text-transform:uppercase; font-weight:600; transition:var(--transition); }
     .shop-link:hover { background:#333; }
-
-    /* ORDER SUMMARY */
     .order-summary { background:var(--cream); padding:40px; position:sticky; top:120px; }
     .order-summary h2 { font-family:'Playfair Display',serif; font-size:22px; font-style:italic; font-weight:400; margin-bottom:30px; padding-bottom:20px; border-bottom:1px solid #e0e0e0; }
     .summary-row { display:flex; justify-content:space-between; font-size:13px; margin-bottom:14px; color:#555; }
@@ -70,8 +55,6 @@
     .checkout-btn { width:100%; padding:18px; background:var(--black); color:var(--white); border:none; font-size:11px; letter-spacing:3px; text-transform:uppercase; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; transition:var(--transition); margin-top:10px; }
     .checkout-btn:hover { background:#333; }
     .secure-note { text-align:center; font-size:11px; color:#aaa; letter-spacing:1px; margin-top:16px; }
-
-    /* YOU MAY ALSO LIKE */
     .also-like { grid-column:1/-1; margin-top:60px; padding-top:60px; border-top:1px solid #eee; }
     .also-like h2 { font-family:'Playfair Display',serif; font-size:28px; font-style:italic; font-weight:400; margin-bottom:40px; text-align:center; }
     .suggestion-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
@@ -81,19 +64,16 @@
     .suggestion-item:hover img { transform:scale(1.05); }
     .suggestion-item h3 { font-size:11px; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px; }
     .suggestion-item span { font-family:'Playfair Display',serif; font-style:italic; color:var(--gold); font-size:14px; }
-
     footer { background:var(--black); color:white; padding:100px 50px; display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; margin-top:80px; }
     footer h4 { text-transform:uppercase; font-size:11px; letter-spacing:3px; margin-bottom:30px; color:var(--gold); font-weight:600; }
     footer a { display:block; color:#aaa; text-decoration:none; font-size:13px; margin-bottom:15px; transition:0.3s; }
     footer a:hover { color:white; }
     .footer-brand p { color:#777; font-size:13px; max-width:280px; line-height:1.8; margin-top:16px; }
-
     @media(max-width:1024px) { .cart-page{grid-template-columns:1fr; padding:60px 30px 80px;} .order-summary{position:static;} .suggestion-grid{grid-template-columns:repeat(2,1fr);} footer{grid-template-columns:1fr 1fr;} }
     @media(max-width:600px) { .nav{padding:20px 20px;} .cart-page{padding:60px 20px;} footer{grid-template-columns:1fr; padding:60px 25px;} }
   </style>
 </head>
 <body>
-
   <header>
     <div class="nav">
       <div class="logo"><a href="Index.html">LUXE</a></div>
@@ -102,6 +82,7 @@
         <a href="handbags.html">Handbags</a>
         <a href="ready-to-wear.html">Ready to Wear</a>
         <a href="jewelry.html">Jewelry</a>
+        <a href="fashion-shows.html">Shows</a>
       </nav>
       <div class="nav-links">
         <a href="#">Search</a>
@@ -109,8 +90,6 @@
       </div>
     </div>
   </header>
-
-  <!-- VIDEO HERO -->
   <section class="cart-hero">
     <div class="video-bg">
       <video autoplay muted loop playsinline preload="auto">
@@ -122,15 +101,10 @@
       <h1>Shopping Cart</h1>
     </div>
   </section>
-
   <main class="cart-page">
-
-    <!-- ITEMS -->
     <div>
       <div id="cart-items-container"></div>
     </div>
-
-    <!-- SUMMARY -->
     <aside class="order-summary" id="order-summary">
       <h2>Order Summary</h2>
       <div class="summary-row"><span>Subtotal</span><span id="subtotal">$0</span></div>
@@ -144,8 +118,6 @@
       <button class="checkout-btn">Proceed to Checkout</button>
       <p class="secure-note">🔒 Secure Checkout · Free Returns</p>
     </aside>
-
-    <!-- SUGGESTIONS -->
     <div class="also-like">
       <h2>You May Also Like</h2>
       <div class="suggestion-grid">
@@ -155,9 +127,7 @@
         <div class="suggestion-item"><a href="New in.html"><div class="img-container"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800" alt="Gown"></div></a><h3>Embroidered Tulle Gown</h3><span>$5,800</span></div>
       </div>
     </div>
-
   </main>
-
   <footer>
     <div class="footer-brand">
       <div class="logo"><a href="Index.html" style="color:white;text-decoration:none;">LUXE</a></div>
@@ -167,7 +137,6 @@
     <div><h4>The House</h4><a href="#">Our Story</a><a href="#">Sustainability</a></div>
     <div><h4>Contact</h4><a href="#">Client Advisors</a><a href="#">Instagram</a></div>
   </footer>
-
   <script>
     const productImages = {
       'Soleil Diamond Solitaire':'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=200',
@@ -193,11 +162,9 @@
       'Unstructured Linen Blazer':'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200',
     };
     const fallback = 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=200';
-
     function getCart() { return JSON.parse(localStorage.getItem('luxe_cart') || '[]'); }
     function saveCart(cart) { localStorage.setItem('luxe_cart', JSON.stringify(cart)); }
     function fmt(n) { return '$' + n.toLocaleString('en-US'); }
-
     function renderCart() {
       const cart = getCart();
       const container = document.getElementById('cart-items-container');
@@ -232,11 +199,9 @@
       document.getElementById('total-price').textContent = fmt(subtotal);
       updateNavCount(cart.reduce((s, i) => s + i.qty, 0));
     }
-
     function changeQty(i, d) { let c = getCart(); c[i].qty += d; if(c[i].qty<=0) c.splice(i,1); saveCart(c); renderCart(); }
     function removeItem(i) { let c = getCart(); c.splice(i,1); saveCart(c); renderCart(); }
     function updateNavCount(t) { document.getElementById('cart-nav-link').textContent = `Cart (${t})`; }
-
     renderCart();
   </script>
 </body>
